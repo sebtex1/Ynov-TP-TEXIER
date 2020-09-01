@@ -88,3 +88,13 @@ def generate_n_chars(nb, arg):
 def histogram(array):
     for i in array:
         print(generate_n_chars(i, "*"))
+
+#max_in_list()
+def max_in_list(array):
+    max=0
+    for i in array:
+        for y in array:
+            if max < y:
+                max = y
+    return max
+
