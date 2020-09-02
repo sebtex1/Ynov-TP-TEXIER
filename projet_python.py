@@ -33,20 +33,6 @@ def wordsInBooks():
         dictionnary[file.replace(".txt", "")] = len(' '.join(list(filtre)).split())
     return dictionnary
 
-<<<<<<< Updated upstream
-def getAllWorldOccurrences():
-    dictionnary={}
-    for file in os.listdir():
-        current_file = open(file, encoding="utf8")
-        words = current_file.read().replace("\n", " ").split(" ").filter()
-        print(words)
-
-def wordFilter(words):
-    filter = ["-", "", " ", "*"]
-    return words in filter and False or True
-
-print(wordsInBooks())
-=======
 def wordFilter(words):
     filter = ["-", "", " ", "*"]
     if (words in filter):
@@ -70,5 +56,3 @@ def getAllWordOccurenceInBooks():
         dictionnary[file.replace(".txt", "")] = book_dictionnary
     return dictionnary
         
-renameAllBooks()
->>>>>>> Stashed changes
