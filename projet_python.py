@@ -1,4 +1,6 @@
 import os
+import requests
+from bs4 import BeautifulSoup
 
 os.chdir('./books')
 
@@ -56,3 +58,34 @@ def getAllWordOccurenceInBooks():
         dictionnary[file.replace(".txt", "")] = book_dictionnary
     return dictionnary
         
+def getAllWordOccurrence():
+    newdictionary = {} # creation du nouveau dictionnaire
+    dictionary = getAllWordOccurenceInBooks() # récupération du dictionnaire des mots dans les livres
+    for dicKey in dictionary: # boucle qui parcours toutes les clées "nom des livres" dans le dictionnaire
+        for word in dictionary[dicKey]: # boucle qui parcours toutes les clées "mots" dans le dictionnaire dictionary[**dicKey**] (dicKey qui est la clé au dessus)
+            if word not in newdictionary: # "if" qui vérifie qui n'y a pas le mot dans le nouveau dictionnaire
+                newdictionary[word] = dictionary[dicKey][word] # On ajoute donc le mot et ça valeur dans le dictionnaire des livres
+            else: # sinon
+                newdictionary[word] = newdictionary[word] + dictionary[dicKey][word] # on récupère la valeur dans le nouveau dictionnaire et on fait la somme avec la valeur du dictionnaire des livres
+    return newdictionary # on return le tout
+        
+def getTop10Occurrence():
+    top10=[]
+    dictionnary=getAllWordOccurrence()
+    sort = sorted(dictionnary.items(), key=lambda x: x[1]) 
+    for loop in range(len(sort)-1, len(sort)-11, -1):
+        top10+=sort[loop]
+    print(top10)
+
+def getBooksLinks():
+    os.chdir('../dl_books')
+    results = requests.get('http://www.gutenberg.org/robot/harvest')
+    parser = BeautifulSoup(results.text)
+    dl_link=[]
+    for link in parser.find_all('a'):
+        # dl_link=link.split(".zip ")
+        print(link)
+
+
+
+getBooksLinks()
