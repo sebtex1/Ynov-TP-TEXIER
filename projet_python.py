@@ -59,15 +59,15 @@ def getAllWordOccurenceInBooks():
     return dictionnary
         
 def getAllWordOccurrence():
-    newdictionary = {} # creation du nouveau dictionnaire
-    dictionary = getAllWordOccurenceInBooks() # récupération du dictionnaire des mots dans les livres
+    newdictionary = {} 
+    dictionary = getAllWordOccurenceInBooks() 
     for dicKey in dictionary: # boucle qui parcours toutes les clées "nom des livres" dans le dictionnaire
         for word in dictionary[dicKey]: # boucle qui parcours toutes les clées "mots" dans le dictionnaire dictionary[**dicKey**] (dicKey qui est la clé au dessus)
-            if word not in newdictionary: # "if" qui vérifie qui n'y a pas le mot dans le nouveau dictionnaire
+            if word not in newdictionary: 
                 newdictionary[word] = dictionary[dicKey][word] # On ajoute donc le mot et ça valeur dans le dictionnaire des livres
-            else: # sinon
+            else: 
                 newdictionary[word] = newdictionary[word] + dictionary[dicKey][word] # on récupère la valeur dans le nouveau dictionnaire et on fait la somme avec la valeur du dictionnaire des livres
-    return newdictionary # on return le tout
+    return newdictionary 
         
 def getTop10Occurrence():
     top10=[]
