@@ -22,7 +22,7 @@ def renameAllBooks():
     dictionnary=getBooksTitleAndAuthor()
     i = 0
     for file in os.listdir():
-        os.rename(file, dictionnary["titles"][i] + "-" + dictionnary["authors"][i] + ".txt")
+        os.rename(file, dictionnary["titles"][i].upper().replace(" ", "_") + "-" + dictionnary["authors"][i].upper().replace(" ", "_") + ".txt")
         i += 1
 
 def wordsInBooks():
@@ -33,6 +33,7 @@ def wordsInBooks():
         dictionnary[file.replace(".txt", "")] = len(' '.join(list(filtre)).split())
     return dictionnary
 
+<<<<<<< Updated upstream
 def getAllWorldOccurrences():
     dictionnary={}
     for file in os.listdir():
@@ -45,3 +46,29 @@ def wordFilter(words):
     return words in filter and False or True
 
 print(wordsInBooks())
+=======
+def wordFilter(words):
+    filter = ["-", "", " ", "*"]
+    if (words in filter):
+        return False
+    else:
+        return True
+
+# getAllWordOccurenceInBooks()["nom du livre"]["mot rechercher"]
+def getAllWordOccurenceInBooks():
+    dictionnary = {}
+    for file in os.listdir():
+        current_file = open(file, encoding="utf8")
+        words = filter(wordFilter, current_file.read().replace("\n", " ").split(" "))
+        all_words = (' '.join(list(words)).split())
+        book_dictionnary = {}
+        for word in all_words:
+            if word.lower() not in book_dictionnary:
+                book_dictionnary[word.lower()] = 1
+            else:
+                book_dictionnary[word.lower()] = book_dictionnary[word.lower()] + 1
+        dictionnary[file.replace(".txt", "")] = book_dictionnary
+    return dictionnary
+        
+renameAllBooks()
+>>>>>>> Stashed changes
