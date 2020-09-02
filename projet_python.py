@@ -33,15 +33,27 @@ def wordsInBooks():
         dictionnary[file.replace(".txt", "")] = len(' '.join(list(filtre)).split())
     return dictionnary
 
+def wordFilter(words):
+    filter = ["-", "", " ", "*"]
+    if (words in filter):
+        return False
+    else:
+        return True
+
 def getAllWorldOccurrences():
     dictionnary={}
     for file in os.listdir():
+        allWords=[]
+        testwords={}
         current_file = open(file, encoding="utf8")
-        words = current_file.read().replace("\n", " ").split(" ").filter()
-        print(words)
-
-def wordFilter(words):
-    filter = ["-", "", " ", "*"]
-    return words in filter and False or True
-
-print(wordsInBooks())
+        words = current_file.read().replace("\n", " ").split(" ")
+        filtered = filter(wordFilter, words)
+        for s in filtered:    
+            allWords.append(s)
+        for word in allWords:
+            if word in allWords:
+                testwords[word] = allWords.count(word)
+                dictionnary[file.replace(".txt", "")] = testwords
+    return dictionnary    
+        
+print(getAllWorldOccurrences())
