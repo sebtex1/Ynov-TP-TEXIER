@@ -98,3 +98,17 @@ def max_in_list(array):
                 max = y
     return max
 
+#correspondance de listes entre mots et longeur de mots
+def word_length(array):
+    words=array
+    listeLength=[]
+    for i in array:
+        listeLength.append(len(i))
+    return listeLength
+
+#find_longest_word()
+def find_longest_word(array):
+    lengths=(word_length(array))
+    print(lengths)
+
+find_longest_word(["bonjour", "allo", "salut"])
