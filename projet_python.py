@@ -82,9 +82,10 @@ def getBooksLinks():
     os.chdir('../dl_books')
     results = requests.get('http://www.gutenberg.org/robot/harvest')
     parser = BeautifulSoup(results.text)
-    for link in parser.find_all('a'):
-        # url = re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', link)
-        print(link.find('https:'))
+    print(parser)
+    # for link in parser.find_all('a'):
+    #     # url = re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', link)
+    #     print(link.find('https:'))
         
     
 # myString = "This is my tweet check it out http://example.com/blah"
