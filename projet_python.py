@@ -1,6 +1,7 @@
 import os
 import requests
 from bs4 import BeautifulSoup
+import re
 
 os.chdir('./books')
 
@@ -81,11 +82,13 @@ def getBooksLinks():
     os.chdir('../dl_books')
     results = requests.get('http://www.gutenberg.org/robot/harvest')
     parser = BeautifulSoup(results.text)
-    dl_link=[]
     for link in parser.find_all('a'):
-        # dl_link=link.split(".zip ")
-        print(link)
+        # url = re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', link)
+        print(link.find('https:'))
+        
+    
+# myString = "This is my tweet check it out http://example.com/blah"
 
-
+# print(re.search("(?P<url>https?://[^\s]+)", myString).group("url"))
 
 getBooksLinks()
